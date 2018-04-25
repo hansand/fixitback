@@ -14,6 +14,8 @@ app.use(function(req, res, next) {
 
 User =require('./models/users');
 Role =require('./models/role');
+Shop =require('./models/shop');
+
 //connect mongoose
 
 mongoose.connect('mongodb://localhost/fixit');
@@ -59,6 +61,20 @@ app.get('/api/fixit/users/:role',function(req,res){
   console.log(444,x)
 });
 
+//getUsers by ID
+app.get('/api/fixit/users/getid/:id',function(req,res){
+
+  var id = req.params.id;
+  console.log(333,id);
+  let x = User.getUsersById({_id:id},function(err,users){
+    if(err){
+      throw err;
+    }
+    res.json(users);
+  });
+  
+});
+
 // add roles
 app.post('/api/fixit/roles',function(req,res){
   var role = req.body;
@@ -79,6 +95,44 @@ app.get('/api/fixit/roles',function(req,res){
     res.json(role);
   });
 });
+
+//addShop
+app.post('/api/fixit/shops',function(req,res){
+  var shop = req.body;
+  Shop.addShop(shop,function(err,shop){
+    if(err){
+      throw err;
+    }
+    res.json(shop);
+  });
+});
+
+//getShops
+app.get('/api/fixit/shops',function(req,res){
+  Shop.getShops(function(err,shop){
+    if(err){
+      throw err;
+    }
+    res.json(shop);
+  });
+});
+
+//get Shops by Catofory
+//getUsers by Role
+app.get('/api/fixit/shops/:catogory',function(req,res){
+
+  var catogory = req.params.catogory;
+  console.log(333,catogory);
+  let x = Shop.getShopsByCatogory({shopCatogory:catogory},function(err,shop){
+    if(err){
+      throw err;
+    }
+    res.json(shop);
+  });
+  console.log(444,x)
+});
+
+
 
 
 

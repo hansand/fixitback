@@ -28,6 +28,14 @@ var userSchema = mongoose.Schema({
     type:String,
     required:true
   },
+  nearTown:{
+    type:String,
+    required:true
+  },
+  ratings:{
+    type:Number,
+    default:0
+  },
   lat:{
     type:Number,
     required:true
@@ -52,5 +60,10 @@ module.exports.addUsers = function(user,callback ){
 
 //get user by role
 module.exports.getUsersByRole = function(query,callback){
- Users.find(query,callback).limit(100);
+ Users.find(query,callback);
 }
+
+// getUserbyID
+module.exports.getUsersById = function(query,callback){
+  Users.find(query,callback);
+ }

@@ -50,3 +50,9 @@ module.exports.getShops = function(callback ){
 module.exports.getShopsByCatogory = function(query,callback){
     Shop.find(query,callback);
    }
+
+   // getShopbyID
+module.exports.getShopById = function(query,callback){
+    Shop.find(query,callback);
+   }
+  

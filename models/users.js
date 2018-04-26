@@ -22,7 +22,8 @@ var userSchema = mongoose.Schema({
   },
   password:{
     type:String,
-    required:true
+    required:true,
+    maxlength: 10
   },
   role:{
     type:String,

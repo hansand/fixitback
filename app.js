@@ -37,7 +37,7 @@ app.get('/api/fixit/users',function(req,res){
 
 //addUsers
 app.post('/api/fixit/users',function(req,res){
-
+  console.log("Adding");
   var user = req.body;
   User.addUsers(user,function(err,user){
     if(err){

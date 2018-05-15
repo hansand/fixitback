@@ -15,6 +15,6 @@ module.exports.addRole = function(role,callback ){
 }
 
 //getRoles
-module.exports.getRoles = function(callback ){
-  Role.find(callback);
+module.exports.getRoles = function(query,callback ){
+  Role.find(query,callback);
 }

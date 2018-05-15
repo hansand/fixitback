@@ -68,3 +68,8 @@ module.exports.getUsersByRole = function(query,callback){
 module.exports.getUsersById = function(query,callback){
   Users.find(query,callback);
  }
+
+ // getUserbyLogin
+module.exports.getUsersLogin = function(query,callback){
+  Users.find(query,callback);
+ }

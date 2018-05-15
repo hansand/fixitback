@@ -62,7 +62,7 @@ app.get('/api/fixit/users/:role',function(req,res){
   console.log(444,x)
 });
 
-//getUsers by ID
+//getUsers by ID,
 app.get('/api/fixit/users/getid/:id',function(req,res){
 
   var id = req.params.id;
@@ -75,6 +75,7 @@ app.get('/api/fixit/users/getid/:id',function(req,res){
   });
   
 });
+
 
 // add roles
 app.post('/api/fixit/roles',function(req,res){
@@ -89,13 +90,26 @@ app.post('/api/fixit/roles',function(req,res){
 
 //getRoles
 app.get('/api/fixit/roles',function(req,res){
-  Role.getRoles(function(err,role){
+
+  var cus= "Customer";
+  // console.log(333,id);
+  let x = Role.getRoles({roleName:{$ne:cus}},function(err,role){
     if(err){
       throw err;
     }
     res.json(role);
   });
 });
+
+//getRoles
+// app.get('/api/fixit/roles',function(req,res){
+//   Role.getRoles(function(err,role){
+//     if(err){
+//       throw err;
+//     }
+//     res.json(role);
+//   });
+// });
 
 //addShop
 app.post('/api/fixit/shops',function(req,res){
@@ -133,12 +147,26 @@ app.get('/api/fixit/shops/:catogory',function(req,res){
   console.log(444,x)
 });
 
-//getUsers by ID
+//getShops by ID
 app.get('/api/fixit/shops/getid/:id',function(req,res){
 
   var id = req.params.id;
   console.log(333,id);
   let x = Shop.getShopById({_id:id},function(err,shops){
+    if(err){
+      throw err;
+    }
+    res.json(shops);
+  });
+});
+
+//getUsers by Login
+app.get('/api/fixit/users/login/:email/:password',function(req,res){
+
+  var email = req.params.email;
+  var password = req.params.password;
+  console.log(email);
+  let x = User.getUsersLogin({email:email,password:password},function(err,shops){
     if(err){
       throw err;
     }

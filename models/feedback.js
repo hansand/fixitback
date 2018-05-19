@@ -9,6 +9,10 @@ var feedBackSchema = mongoose.Schema({
         type:String,
         require:true
     },
+    ratePoint:{
+        type:Number,
+        required:true
+    },
     create_date:{
         type:Date,
         defult:Date.now

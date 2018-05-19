@@ -16,6 +16,9 @@ User =require('./models/users');
 Role =require('./models/role');
 Shop =require('./models/shop');
 FeedBack=require('./models/feedback');
+Work=require('./models/work');
+Job=require('./models/job');
+
 
 //connect mongoose
 
@@ -76,6 +79,18 @@ app.get('/api/fixit/users/getid/:id',function(req,res){
   
 });
 
+//updateUserFeedback
+app.put('/api/fixit/users/getid/:id',function(req,res){
+  var id=req.params.id;
+  var user=req.body;
+
+  User.updateUser(id,user,function(err,user){
+      if(err){
+          throw err;
+      }
+      res.json(user);
+  })
+});
 
 // add roles
 app.post('/api/fixit/roles',function(req,res){
@@ -195,6 +210,41 @@ app.get('/api/fixit/feedback/empid/:empid',function(req,res){
       throw err;
     }
     res.json(feedback);
+  });
+});
+
+// add work
+app.post('/api/fixit/work',function(req,res){
+  console.log("dd");
+  var work = req.body;
+  Work.addWork(work,function(err,work){
+    if(err){
+      throw err;
+    }
+    res.json(work);
+  });
+});
+
+//get works by empID
+app.get('/api/fixit/work/empid/:empid',function(req,res){
+
+  var empid = req.params.empid;
+  let x = Work.getWorkByEmp({empID:empid},function(err,work){
+    if(err){
+      throw err;
+    }
+    res.json(work);
+  });
+});
+
+// add jobs
+app.post('/api/fixit/jobs',function(req,res){
+  var job = req.body;
+  Job.addJob(job,function(err,job){
+    if(err){
+      throw err;
+    }
+    res.json(job);
   });
 });
 

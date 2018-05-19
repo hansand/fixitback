@@ -61,7 +61,8 @@ module.exports.addUsers = function(user,callback ){
 
 //get user by role
 module.exports.getUsersByRole = function(query,callback){
- Users.find(query,callback);
+  var mysort={ratings:-1}
+ Users.find(query,callback).sort(mysort);
 }
 
 // getUserbyID
@@ -73,3 +74,13 @@ module.exports.getUsersById = function(query,callback){
 module.exports.getUsersLogin = function(query,callback){
   Users.find(query,callback);
  }
+
+ //updateUser
+module.exports.updateUser = function(id,user,options,callback){
+  var query = {_id:id};
+  var update = {
+    ratings:user.ratings
+  }
+
+  User.findOneAndUpdate(query,update,options,callback);
+}

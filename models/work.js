@@ -9,6 +9,10 @@ var workSchema = mongoose.Schema({
         type:String,
         require:true
     },
+    workTitle:{
+        type:String,
+        required:true
+    },
     description:{
         type:String,
         require:true

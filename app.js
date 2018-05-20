@@ -52,7 +52,7 @@ app.post('/api/fixit/users',function(req,res){
 });
 
 //getUsers by Role
-app.get('/api/fixit/users/:role/:id',function(req,res){
+app.get('/api/fixit/users/roleid/:role/:id',function(req,res){
 
   var role = req.params.role;
   var id = req.params.id;

@@ -52,11 +52,12 @@ app.post('/api/fixit/users',function(req,res){
 });
 
 //getUsers by Role
-app.get('/api/fixit/users/:role',function(req,res){
+app.get('/api/fixit/users/:role/:id',function(req,res){
 
   var role = req.params.role;
+  var id = req.params.id;
   console.log(333,role);
-  let x = User.getUsersByRole({role:role},function(err,users){
+  let x = User.getUsersByRole({role:role,_id:{$ne:id}},function(err,users){
     if(err){
       throw err;
     }
@@ -239,6 +240,7 @@ app.get('/api/fixit/work/empid/:empid',function(req,res){
 
 // add jobs
 app.post('/api/fixit/jobs',function(req,res){
+  console.log("addingJob");
   var job = req.body;
   Job.addJob(job,function(err,job){
     if(err){
@@ -247,6 +249,18 @@ app.post('/api/fixit/jobs',function(req,res){
     res.json(job);
   });
 });
+
+//getJobs
+app.get('/api/fixit/jobs',function(req,res){
+  console.log("getting Jobs");
+  Job.getJobs(function(err,jobs){
+    if(err){
+      throw err;
+    }
+    res.json(jobs);
+  });
+});
+
 
 
 

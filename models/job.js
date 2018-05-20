@@ -17,15 +17,19 @@ var jobSchema = mongoose.Schema({
     },
     email:{
         type:String,
-        defult:"Pending",
+        require:true
+    },
+    password:{
+        type:String,
+        required:true
     },
     contact:{
         type:String,
-        defult:"Pending",
+        require:true
     },
     description:{
         type:String,
-        defult:"Pending",
+        require:true
     },
     create_date:{
         type:Date,
@@ -44,3 +48,9 @@ module.exports.addJob = function(job,callback ){
 module.exports.getJobByEmp = function(query,callback){
     Job.find(query,callback);
    }
+
+
+//getAllJobs
+module.exports.getJobs = function(callback ){
+    Job.find(callback);
+  }

@@ -29,12 +29,27 @@ var workSchema = mongoose.Schema({
 
 var Work = module.exports = mongoose.model('Work' ,workSchema  );
 
-//add feedBack
+//add Work
 module.exports.addWork = function(work,callback ){
     Work.create(work,callback);
   }
 
-// get Work  by empID feedBack
+// get Work  by empID
 module.exports.getWorkByEmp = function(query,callback){
     Work.find(query,callback);
    }
+
+// get Work  by ID
+module.exports.getWorkById = function(query,callback){
+    Work.find(query,callback);
+   }
+
+    //updatestateWork
+module.exports.updateState = function(id,work,options,callback){
+    var query = {_id:id};
+    var update = {
+      state:work.state
+    }
+  
+    Work.findOneAndUpdate(query,update,options,callback);
+  }

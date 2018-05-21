@@ -238,6 +238,35 @@ app.get('/api/fixit/work/empid/:empid',function(req,res){
   });
 });
 
+//getwork by _id
+app.get('/api/fixit/work/:id',function(req,res){
+  console.log("getting Work by id");
+  var id = req.params.id;
+  console.log("Getting Work By ID ",id);
+  let x = Work.getWorkById({_id:id},function(err,work){
+    if(err){
+      throw err;
+    }
+    res.json(work);
+  });
+});
+
+
+//updatWorkState
+app.put('/api/fixit/work/:id',function(req,res){
+ 
+  var id=req.params.id;
+  var work=req.body;
+  console.log("Updting state",id,"  " ,req.body.state);
+
+  Work.updateState(id,work,function(err,work){
+      if(err){
+          throw err;
+      }
+      res.json(work);
+  })
+});
+
 // add jobs
 app.post('/api/fixit/jobs',function(req,res){
   console.log("addingJob");
@@ -252,7 +281,7 @@ app.post('/api/fixit/jobs',function(req,res){
 
 //getJobs
 app.get('/api/fixit/jobs',function(req,res){
-  console.log("getting Jobs");
+ 
   Job.getJobs(function(err,jobs){
     if(err){
       throw err;

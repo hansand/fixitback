@@ -39,16 +39,15 @@ var jobSchema = mongoose.Schema({
 
 var Job = module.exports = mongoose.model('Job' ,jobSchema  );
 
-//add feedBack
+//add JOb
 module.exports.addJob = function(job,callback ){
     Job.create(job,callback);
   }
 
-// get Work  by empID feedBack
-module.exports.getJobByEmp = function(query,callback){
-    Job.find(query,callback);
-   }
-
+  //getJob by Id
+  module.exports.getJobById = function(job,callback ){
+    Job.find(job,callback);
+  }
 
 //getAllJobs
 module.exports.getJobs = function(callback ){

@@ -53,3 +53,8 @@ module.exports.updateState = function(id,work,options,callback){
   
     Work.findOneAndUpdate(query,update,options,callback);
   }
+
+// get Work  by userID
+module.exports.getWorkByUser = function(query,callback){
+    Work.find(query,callback);
+   }

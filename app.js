@@ -18,6 +18,7 @@ Shop =require('./models/shop');
 FeedBack=require('./models/feedback');
 Work=require('./models/work');
 Job=require('./models/job');
+wFeedback=require('./models/workfeedback');
 
 
 //connect mongoose
@@ -238,6 +239,19 @@ app.get('/api/fixit/work/empid/:empid',function(req,res){
   });
 });
 
+//get works by userID
+app.get('/api/fixit/work/userid/:userid',function(req,res){
+  var userid = req.params.userid;
+ console.log("getting Works By user ID ", userid );  
+  let x = Work.getWorkByUser({userID:userid},function(err,work){
+    if(err){
+      throw err;
+    }
+    res.json(work);
+  });
+});
+
+
 //getwork by _id
 app.get('/api/fixit/work/:id',function(req,res){
   console.log("getting Work by id");
@@ -290,6 +304,42 @@ app.get('/api/fixit/jobs',function(req,res){
   });
 });
 
+//getJobs by _id
+app.get('/api/fixit/jobs/:id',function(req,res){
+  var id = req.params.id;
+  console.log("Getting job By ID ",id);
+  let x = Job.getJobById({_id:id},function(err,job){
+    if(err){
+      throw err;
+    }
+    res.json(job);
+  });
+});
+
+
+//addworkFeddback
+app.post('/api/fixit/feedback/wfeedback',function(req,res){
+  console.log("adding work Feedback");
+  var wfeedback = req.body;
+  wFeedback.addwFeedBack(wfeedback,function(err,job){
+    if(err){
+      throw err;
+    }
+    res.json(wfeedback);
+  });
+});
+
+//getworkFeedback by _id
+app.get('/api/fixit/feedback/wfeedback/:id',function(req,res){
+  var id = req.params.id;
+  console.log("getting Feedback by _id ",id);
+  let x = wFeedback.getwFeedBack({workId:id},function(err,wfeedback){
+    if(err){
+      throw err;
+    }
+    res.json(wfeedback);
+  });
+});
 
 
 

@@ -4,11 +4,7 @@ var mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
 
-  fname:{
-    type:String,
-    required:true
-  },
-  lname:{
+  name:{
     type:String,
     required:true
   },
@@ -36,6 +32,9 @@ var userSchema = mongoose.Schema({
   ratings:{
     type:Number,
     default:0
+  },
+  shopType:{
+    type:String
   },
   lat:{
     type:Number,

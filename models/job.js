@@ -53,3 +53,9 @@ module.exports.addJob = function(job,callback ){
 module.exports.getJobs = function(callback ){
     Job.find(callback);
   }
+
+  //removeJob
+module.exports.removeJob = function(id,callback){
+    var query = {_id:id};
+    Job.remove(query,callback);
+}

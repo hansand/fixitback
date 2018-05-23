@@ -316,6 +316,20 @@ app.get('/api/fixit/jobs/:id',function(req,res){
   });
 });
 
+// removeJobs
+app.delete('/api/fixit/jobs/:id',function(req,res){
+  var id=req.params.id;
+  console.log("Removing Job " ,id);
+  
+  Job.removeJob(id,function(err,job){
+      if(err){
+          throw err;
+      }
+      res.json(job);
+  })
+});
+
+
 
 //addworkFeddback
 app.post('/api/fixit/feedback/wfeedback',function(req,res){

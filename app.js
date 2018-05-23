@@ -19,6 +19,7 @@ FeedBack=require('./models/feedback');
 Work=require('./models/work');
 Job=require('./models/job');
 wFeedback=require('./models/workfeedback');
+JobReq=require('./models/jobreq');
 
 
 //connect mongoose
@@ -354,6 +355,33 @@ app.get('/api/fixit/feedback/wfeedback/:id',function(req,res){
     res.json(wfeedback);
   });
 });
+
+
+//addUsers
+app.post('/api/fixit/jobreq/',function(req,res){
+  console.log("Adding JobReq");
+  var jobreq = req.body;
+  JobReq.addReq(jobreq,function(err,user){
+    if(err){
+      throw err;
+    }
+    res.json(jobreq);
+  });
+});
+
+
+//getReq by _id
+app.get('/api/fixit/jobreq/:id',function(req,res){
+  var id = req.params.id;
+  console.log("getting req by _id ",id);
+   JobReq.getReq({_id:id},function(err,jobreq){
+    if(err){
+      throw err;
+    }
+    res.json(jobreq);
+  });
+});
+
 
 
 

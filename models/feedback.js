@@ -9,6 +9,14 @@ var feedBackSchema = mongoose.Schema({
         type:String,
         require:true
     },
+    userID:{
+        type:String,
+        required:true
+    },
+    userName:{
+        type:String,
+        required:true
+    },
     ratePoint:{
         type:Number,
         required:true

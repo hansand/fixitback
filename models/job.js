@@ -59,3 +59,9 @@ module.exports.removeJob = function(id,callback){
     var query = {_id:id};
     Job.remove(query,callback);
 }
+
+
+  //getJob by empId
+  module.exports.getJobByEmpId = function(job,callback ){
+    Job.find(job,callback);
+  }

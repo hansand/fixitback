@@ -27,7 +27,9 @@ module.exports.addReq = function(jobreq,callback ){
     JobReq.create(jobreq,callback);
   }
 
-//get Feed back by empID feedBack
-module.exports.getReq = function(query,callback){
+//get req by JobID
+module.exports.getReqByJobId = function(query,callback){
     JobReq.find(query,callback);
    }
+
+

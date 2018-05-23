@@ -317,6 +317,18 @@ app.get('/api/fixit/jobs/:id',function(req,res){
   });
 });
 
+//getJobs by _id
+app.get('/api/fixit/jobs/empid/:id',function(req,res){
+  var id = req.params.id;
+  console.log("Getting job By empID ",id);
+  let x = Job.getJobByEmpId({userID:id},function(err,job){
+    if(err){
+      throw err;
+    }
+    res.json(job);
+  });
+});
+
 // removeJobs
 app.delete('/api/fixit/jobs/:id',function(req,res){
   var id=req.params.id;
@@ -382,6 +394,17 @@ app.get('/api/fixit/jobreq/:id',function(req,res){
   });
 });
 
+//getReq by Jobid
+app.get('/api/fixit/jobreq/jobid/:id',function(req,res){
+  var id = req.params.id;
+  console.log("Getting job By empID ",id);
+  let x = JobReq.getReqByJobId({jobid:id},function(err,jobreq){
+    if(err){
+      throw err;
+    }
+    res.json(jobreq);
+  });
+});
 
 
 

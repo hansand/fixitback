@@ -20,6 +20,8 @@ Work=require('./models/work');
 Job=require('./models/job');
 wFeedback=require('./models/workfeedback');
 JobReq=require('./models/jobreq');
+Order=require('./models/order');
+
 
 
 //connect mongoose
@@ -404,6 +406,75 @@ app.get('/api/fixit/jobreq/jobid/:id',function(req,res){
     }
     res.json(jobreq);
   });
+});
+
+
+
+///////////////////////////////////////
+// add Order
+app.post('/api/fixit/order',function(req,res){
+  console.log("Ordeing");
+  var order = req.body;
+  Order.addOrder(order,function(err,order){
+    if(err){
+      throw err;
+    }
+    res.json(order);
+  });
+});
+
+//get works by empID
+app.get('/api/fixit/order/empid/:empid',function(req,res){
+
+  var empid = req.params.empid;
+  let x = Order.getOrderByEmp({empID:empid},function(err,order){
+    if(err){
+      throw err;
+    }
+    res.json(order);
+  });
+});
+
+//get works by userID
+app.get('/api/fixit/order/userid/:userid',function(req,res){
+  var userid = req.params.userid;
+ console.log("getting order By user ID ", userid );  
+  let x = Order.getOrderByUser({userID:userid},function(err,order){
+    if(err){
+      throw err;
+    }
+    res.json(order);
+  });
+});
+
+
+//getwork by _id
+app.get('/api/fixit/order/:id',function(req,res){
+  console.log("getting Order by id");
+  var id = req.params.id;
+  console.log("Getting Order By ID ",id);
+  let x = Order.getOrderById({_id:id},function(err,order){
+    if(err){
+      throw err;
+    }
+    res.json(order);
+  });
+});
+
+
+//updatWorkState
+app.put('/api/fixit/order/:id',function(req,res){
+ 
+  var id=req.params.id;
+  var order=req.body;
+  console.log("Updting state",id,"  " ,req.body.state);
+
+  Order.updateState(id,order,function(err,work){
+      if(err){
+          throw err;
+      }
+      res.json(order);
+  })
 });
 
 
